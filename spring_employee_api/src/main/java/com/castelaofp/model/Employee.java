@@ -18,8 +18,11 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;	
+	@Column(name = "NAME")
+	private String name;
+	@Column(name = "SALARY")
 	private BigDecimal salary;
+	@Column(name = "CREATED_DATE")
 	private Date createdDate;
 
 	// Constructor, getters, and setters

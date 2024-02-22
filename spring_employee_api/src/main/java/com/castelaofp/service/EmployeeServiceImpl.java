@@ -9,19 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.castelaofp.model.Employee;
+import com.castelaofp.repository.EmployeeJpaRepository;
 import com.castelaofp.repository.EmployeeRepository;
-import com.castelaofp.repository.EmployeeRepositoryImpl;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private static Logger LOG = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
+	private static Logger LOG = LoggerFactory.getLogger(EmployeeJpaRepository.class);
 
+	//@Autowired
+	//private EmployeeRepository employeeRepository;
+	
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
 	@Override
 	public List<Employee> findAll() {
+		LOG.info("Encontrando todos los employees");
 		return employeeRepository.findAll();
 	}
 
@@ -49,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean delete(Long id) {
 		Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 	    if (optionalEmployee.isPresent()) {
-            employeeRepository.deleteById(id);
+	    	employeeRepository.deleteById(id);
             return true;
         } else {
             return false;
